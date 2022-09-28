@@ -2,4 +2,5 @@
 
 - install laravel
 - install laravel ui
-- create db and run migrations
+- create db and add models together with controllers `php artisan make:model Order -mrc`
+- migrate db
