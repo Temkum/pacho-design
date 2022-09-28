@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,4 +21,11 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::resource('/orders', 'OrderController');
+Route::resource('/products', 'ProductController');
+Route::resource('/users', 'UserController');
+Route::resource('/suppliers', 'SupplierController');
+Route::resource('/companies', 'CompanyController');
+Route::resource('/transactions', 'TransactionController');
