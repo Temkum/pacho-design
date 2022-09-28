@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Livewire\DashboardComponent;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,4 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/', DashboardComponent::class)->name('dashboard');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
