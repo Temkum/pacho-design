@@ -1,0 +1,61 @@
+.w-30 {
+    width: 30%;
+}
+
+.action-btns {
+    color: red;
+}
+
+.text-bold {
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.pwr-icon {
+    color: yellowgreen;
+}
+
+.center-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.b-1 {
+    border: .8px solid;
+}
+
+.br-100 {
+    border-radius: 100%;
+}
+
+/* sidebar modal */
+.modal.left .modal-dialog {
+    position: absolute;
+    top: 0;
+    left: 0;
+    margin: 0;
+}
+
+.modal.left .modal-dialog.modal-sm {
+    max-width: 300px;
+}
+
+.modal.left .modal.content {
+    min-height: 100vh;
+    border: 0;
+}
+
+li {
+    list-style: none;
+}
+
+
+@media screen and (max-width: 768px) {
+    .main-nav a {
+        margin-bottom: 10px;
+    }
+}
