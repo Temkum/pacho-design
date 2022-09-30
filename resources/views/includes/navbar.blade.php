@@ -1,20 +1,16 @@
-<style>
-
-</style>
-
 <nav class="main-nav">
     <a href="#" class="btn btn-outline-primary me-3" data-bs-toggle="modal" data-bs-target="#sidebar">
         <i class="bi-list "></i>
     </a>
-    <a href="#" class="btn btn-outline-primary me-4">
-        <i class="bi-list me-2"></i>
+    <a href="{{ route('home') }}" class="btn btn-outline-primary me-4">
+        <i class="bi-house me-2"></i>
         Home
     </a>
-    <a href="#" class="btn btn-outline-primary me-4">
+    <a href="{{ route('users.index') }}" class="btn btn-outline-primary me-4">
         <i class="bi-people-fill me-2"></i> Users
     </a>
     <a href="#" class="btn btn-outline-primary me-4">
-        <i class="bi-coin-cash me-2"></i> Orders
+        <i class="bi-cart-check me-2"></i> Orders
     </a>
     <a href="#" class="btn btn-outline-primary me-4">
         <i class="bi-currency-exchange me-2"></i> Transactions

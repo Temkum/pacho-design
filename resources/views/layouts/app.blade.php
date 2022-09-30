@@ -28,7 +28,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                @include('layouts.includes.navbar')
+                @include('includes.navbar')
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
@@ -91,7 +91,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        @include('layouts.includes.sidebar')
+                        @include('includes.sidebar')
                     </div>
                 </div>
             </div>
