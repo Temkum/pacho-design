@@ -2,12 +2,15 @@
     <a href="#" class="btn btn-outline-primary me-3" data-bs-toggle="modal" data-bs-target="#sidebar">
         <i class="bi-list "></i>
     </a>
-    <a href="{{ route('home') }}" class="btn btn-outline-primary me-4">
+    {{-- <a href="{{ route('home') }}" class="btn btn-outline-primary me-4">
         <i class="bi-house me-2"></i>
         Home
-    </a>
+    </a> --}}
     <a href="{{ route('users.index') }}" class="btn btn-outline-primary me-4">
         <i class="bi-people-fill me-2"></i> Users
+    </a>
+    <a href="{{ route('products.index') }}" class="btn btn-outline-primary me-4">
+        <i class="bi-stack me-2"></i> Products
     </a>
     <a href="#" class="btn btn-outline-primary me-4">
         <i class="bi-cart-check me-2"></i> Orders

@@ -14,7 +14,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::paginate(13);
+
+        return view('products.products', ['products' => $products]);
     }
 
     /**
@@ -35,7 +37,20 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $products = new Product();
+        $products->product_name = $request->product_name;
+        $products->description = $request->description;
+        $products->brand = $request->brand;
+        $products->price = $request->price;
+        $products->quantity = $request->quantity;
+        $products->stock_alert = $request->stock_alert;
+        $products->save();
+
+        if ($products) {
+            return redirect()->back()->with('success', 'Product created successfully!');
+        }
+
+        return redirect()->back()->with('error', 'Something went wrong. Please try again!');
     }
 
     /**
@@ -69,7 +84,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->all());
+
+        return redirect(route('products.index'))->with('success', 'Product updated successfully!');
     }
 
     /**
@@ -80,6 +97,10 @@ class ProductController extends Controller
      */
     public function destroy(Product $product)
     {
-        //
+        // $product = Product::all();
+
+        $product->delete();
+
+        return redirect(route('products.index'))->with('success', 'Product updated successfully!');
     }
 }
