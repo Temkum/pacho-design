@@ -12,7 +12,7 @@
     <a href="{{ route('products.index') }}" class="btn btn-outline-primary me-4">
         <i class="bi-stack me-2"></i> Products
     </a>
-    <a href="#" class="btn btn-outline-primary me-4">
+    <a href="{{ route('orders.index') }}" class="btn btn-outline-primary me-4">
         <i class="bi-cart-check me-2"></i> Orders
     </a>
     <a href="#" class="btn btn-outline-primary me-4">
