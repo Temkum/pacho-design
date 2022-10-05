@@ -28,7 +28,9 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                @include('includes.navbar')
+                @if (Auth()->user())
+                    @include('includes.navbar')
+                @endif
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->

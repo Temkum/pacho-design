@@ -21,7 +21,18 @@ class OrderController extends Controller
         $products = Product::all();
         $orders = Order::all();
 
-        return view('orders', ['orders' => $orders, 'products' => $products]);
+        // latest orders
+        $last_id = OrderDetail::max('order_id');
+        $order_receipt = OrderDetail::where('order_id', $last_id)->get();
+
+        return view(
+            'orders',
+            [
+                'orders' => $orders,
+                'products' => $products,
+                'order_receipt' => $order_receipt
+            ]
+        );
     }
 
     /**

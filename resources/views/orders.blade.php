@@ -1,6 +1,5 @@
 @extends('layouts.app')
 
-
 @section('content')
     <div class="container-fluid">
         <div class="row">
@@ -67,6 +66,17 @@
                 <div class="card">
                     <div class="card-header">Total: <span class="total text-bold fs-2">0.00</span></div>
                     <div class="card-body">
+                        <div class="btns mb-3">
+                            <div class="btn-group">
+                                <button class="btn btn-secondary"
+                                    onclick="event.preventDefault();printReceiptContent('print');">
+                                    <i class="bi-printer me-2"></i>
+                                    Print</button>
+                                <button class="btn btn-primary"><i class="bi-file-earmark-pdf me-2"></i> Report</button>
+                                <button class="btn btn-success"><i class="bi-alarm me-2"></i> Latest</button>
+                            </div>
+                        </div>
+
                         <div class="d-flex">
                             <div class="me-2">
                                 <label for="customer">Customer</label>
@@ -116,6 +126,20 @@
         </div>
     </div>
 @endsection
+{{-- <div class="modal fade">
+    <div id="print">
+        @include('receipt')
+    </div>
+</div> --}}
+
+<div class="modal fade" id="print" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @include('receipt')
+        </div>
+    </div>
+</div>
+
 
 @section('script')
     <script>
@@ -126,7 +150,7 @@
             let tr = `<tr>
                     <td>${numberOfRow}</td>
                       <td>
-                        <select name="product_id[]" id="product_id" class="form-control product_id">
+                        <select name="product_id[]" id="product_id" class="form-control">
                             ${product}
                         </select>
                     </td>
@@ -170,7 +194,7 @@
 
             let qty = tr.find('#quantity').val() - 0;
             let disc = tr.find('#discount').val() - 0;
-            price = tr.find('#price').val() - 0;
+            var price = tr.find('#price').val() - 0;
             let total_amt = (qty * price) - ((qty * price * disc) / 100);
             tr.find('#total_amt').val(total_amt);
 
@@ -178,11 +202,11 @@
         });
 
         $('.addMoreProduct').delegate('#quantity, #discount', 'keyup', function() {
-            let tr = $(this).parent().parent()
+            let tr = $(this).parent().parent();
             let qty = tr.find('#quantity').val() - 0;
             let disc = tr.find('#discount').val() - 0;
             var price = tr.find('#price').val() - 0;
-            let total_amt = (qty * price) - ((qty * price * disc) / 100)
+            let total_amt = (qty * price) - ((qty * price * disc) / 100);
             tr.find('#total_amt').val(total_amt)
 
             totalAmount();
@@ -193,9 +217,31 @@
 
             let total = $('.total').html();
             let paid_amt = $(this).val();
-            let gTotal = number(paid_amt - total);
+            let gTotal = parseFloat(paid_amt - total);
 
             $('#balance').val(gTotal).toFixed(2);
-        })
+        });
+
+        // print receipt
+        function printReceiptContent(el) {
+            var data =
+                `<input type="button" id="printBtn" class="printBtn" value="Print Receipt" onclick="window.print()" style = "display: block; width: 100%; border: none; background-color: #008b8b; color: white; padding:10px; cursor:pointer;"`;
+            data += document.getElementById(el).innerHTML;
+            myReceipt = window.open('', 'myWin', 'left=500, top=130, width=500, height=600');
+            console.log(myReceipt)
+
+            myReceipt.screenX = 0;
+            myReceipt.screenY = 0;
+            myReceipt.document.write(data);
+            myReceipt.document.title = 'Print Receipt';
+            myReceipt.focus();
+
+            setTimeout(() => {
+                myReceipt.close();
+            }, 8000)
+        }
     </script>
 @endsection
+{{-- <input type="button" id="printBtn" class="printBtn d-block btn-primary btn-lg w-100" value="Print Receipt"
+    onclick="window.print()"
+    style="display: block; width: 100%; border: none; background-color: #008b8b; color: white;"> --}}

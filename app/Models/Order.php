@@ -12,4 +12,9 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = ['name', 'address'];
+
+    public function order_detail()
+    {
+        return $this->belongsTo('App\Models\OrderDetail');
+    }
 }
