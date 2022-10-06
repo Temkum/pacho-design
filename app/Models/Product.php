@@ -19,4 +19,14 @@ class Product extends Model
         'quantity',
         'stock_alert'
     ];
+
+    public function order_detail()
+    {
+        return $this->hasMany('App\Models\OrderDetail');
+    }
+
+    public function cart()
+    {
+        return $this->hasMany('App\Models\Cart');
+    }
 }
