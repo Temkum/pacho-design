@@ -9,12 +9,14 @@ use Livewire\Component;
 class Order extends Component
 {
     public $orders;
-    public $products = [];
+    public $products = [], $balance = '';
     public $product_code;
     public $product_qty;
     public $product_price;
     public $user_id;
     public $cart_product;
+    public $add_qty;
+    public $amount_paid;
 
     public function mount()
     {
@@ -48,6 +50,31 @@ class Order extends Component
         return $this->message = 'Product added successfully!';
     }
 
+    public function increaseQty($cart_id)
+    {
+        $carts = Cart::find($cart_id);
+        $carts->increment('product_qty', 1);
+        $update_price = $carts->product_qty * $carts->product->price;
+
+        $carts->update(['product_price' => $update_price]);
+        $this->mount();
+    }
+
+    public function decreaseQty($cart_id)
+    {
+        $carts = Cart::find($cart_id);
+
+        if ($carts->product_qty <= 1) {
+            return session()->flash('info', $carts->product->product_name . "'s quantity can't be less than 1. Increase the quantity or remove items from cart!");
+        }
+
+        $carts->decrement('product_qty', 1);
+        $update_price = $carts->product_qty * $carts->product->price;
+
+        $carts->update(['product_price' => $update_price]);
+        $this->mount();
+    }
+
     public function removeProduct($cart_id)
     {
         $del_item = Cart::find($cart_id);
@@ -55,10 +82,15 @@ class Order extends Component
 
         $this->message = "Product removed successfully!";
         $this->cart_product = $this->cart_product->except($cart_id);
+        $this->mount();
     }
 
     public function render()
     {
+        if ($this->amount_paid != '') {
+            $total_amt = $this->amount_paid - $this->cart_product->sum('product_price');
+            $this->balance = $total_amt;
+        }
         return view('livewire.order');
     }
 }

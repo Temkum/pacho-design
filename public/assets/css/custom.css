@@ -2,8 +2,16 @@
     font-family: 'Montserrat', sans-serif;
 }
 
+.w-10 {
+    width: 10%;
+}
+
 .w-30 {
     width: 30%;
+}
+
+.w-40 {
+    width: 40%;
 }
 
 .action-btns {
