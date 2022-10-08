@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Picqer;;
 
 class ProductController extends Controller
 {
@@ -37,8 +38,18 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        // generate product code
+        $prod_code = rand(231723897, 999999);
+
+        // barcode
+        $redColor = '255, 0, 0';
+        $generator = new Picqer\Barcode\BarcodeGeneratorHTML();
+        $barcodes = $generator->getBarcode($prod_code, $generator::TYPE_STANDARD_2_5, 2, 60);
+
         $products = new Product();
         $products->product_name = $request->product_name;
+        $products->product_code = $prod_code;
+        $products->barcode = $barcodes;
         $products->description = $request->description;
         $products->brand = $request->brand;
         $products->price = $request->price;
@@ -102,5 +113,12 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect(route('products.index'))->with('success', 'Product updated successfully!');
+    }
+
+    public function productBarcodes()
+    {
+        $prod_barcodes = Product::select('barcode', 'product_code')->get();
+
+        return view('products.barcodes', ['prod_barcodes' => $prod_barcodes]);
     }
 }

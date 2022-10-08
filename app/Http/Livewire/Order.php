@@ -65,7 +65,7 @@ class Order extends Component
         $carts = Cart::find($cart_id);
 
         if ($carts->product_qty <= 1) {
-            return session()->flash('info', $carts->product->product_name . "'s quantity can't be less than 1. Increase the quantity or remove items from cart!");
+            return session()->back()->with('info', $carts->product->product_name . "'s quantity can't be less than 1. Increase the quantity or remove items from cart!");
         }
 
         $carts->decrement('product_qty', 1);

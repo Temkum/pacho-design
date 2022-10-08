@@ -27,7 +27,7 @@
         <a href="#" class="btn btn-outline-primary me-4">
             <i class="bi-people me-2"></i>Customers
         </a>
-        <a href="#" class="btn btn-outline-primary me-4">
-            <i class="bi-bag-plus me-2"></i>Incoming
+        <a href="{{ route('barcodes') }}" class="btn btn-outline-primary me-4">
+            <i class="bi-bag-plus me-2"></i>Barcodes
         </a>
     </nav>

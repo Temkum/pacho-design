@@ -118,23 +118,24 @@
                         <td>{{ $receipt->discount ? '' : 0 }}</td>
                         <td>${{ number_format($receipt->amount, 2) }}</td>
                     </tr>
+
+                    <tr class="items">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Tax</td>
+                        <td></td>
+                    </tr>
+                    <tr class="items">
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="bold">Total</td>
+                        <td class="fs-2">
+                            <b>${{ number_format($receipt->sum('amount'), 2) }}</b>
+                        </td>
+                    </tr>
                 @endforeach
-                <tr class="items">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td>Tax</td>
-                    <td></td>
-                </tr>
-                <tr class="items">
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td class="bold">Total</td>
-                    <td class="fs-2">
-                        <b>${{ number_format($receipt->sum('amount'), 2) }}</b>
-                    </td>
-                </tr>
             </table>
 
             <div class="text mt-4">

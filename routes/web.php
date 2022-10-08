@@ -34,3 +34,5 @@ Route::resource('/users', UserController::class);
 Route::resource('/suppliers', SupplierController::class);
 Route::resource('/companies', CompanyController::class);
 Route::resource('/transactions', TransactionController::class);
+
+Route::get('/barcodes', [ProductController::class, 'productBarcodes'])->name('barcodes');
